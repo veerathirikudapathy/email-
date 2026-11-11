@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Classify an email message as spam or not spam using machine learning.">
+  <title>Email Spam Classifier</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="MailGuard home">
+        <span class="brand-mark">M</span><span>MailGuard<span class="brand-dot">.</span></span>
+      </a>
+      <span class="top-note"><span class="status-dot"></span> ML-powered demo</span>
+    </header>
+
+    <section class="hero">
+      <div class="eyebrow"><span class="eyebrow-line"></span> SMART EMAIL SECURITY</div>
+      <h1>Spot spam.<br><span>Stay protected.</span></h1>
+      <p class="hero-copy">Paste an email message below. Our machine learning model will check its language patterns and estimate whether it looks like spam.</p>
+    </section>
+
+    <section class="classifier-card" aria-labelledby="form-title">
+      <div class="card-heading">
+        <div>
+          <p class="section-kicker">MESSAGE ANALYZER</p>
+          <h2 id="form-title">Check an email</h2>
+        </div>
+        <span class="shield-icon" aria-hidden="true">✓</span>
+      </div>
+
+      <label for="email-message">Email content</label>
+      <textarea id="email-message" maxlength="10000" placeholder="Paste the subject and body of an email here..." spellcheck="true"></textarea>
+      <div class="input-meta"><span>Do not include passwords or sensitive information.</span><span id="char-count">0 / 10,000</span></div>
+
+      <button id="check-button" type="button">
+        <span class="button-label">Analyze message</span><span class="button-arrow" aria-hidden="true">→</span>
+      </button>
+      <p class="error-message" id="error-message" role="alert" hidden></p>
+
+      <section class="result" id="result" aria-live="polite" hidden>
+        <div class="result-top">
+          <div>
+            <p class="section-kicker">ANALYSIS RESULT</p>
+            <h3 id="result-title">Not Spam</h3>
+          </div>
+          <span class="result-badge" id="result-badge">✓</span>
+        </div>
+        <p class="result-description" id="result-description"></p>
+        <div class="confidence-row"><span>Model confidence</span><strong id="confidence-value">0%</strong></div>
+        <div class="meter"><span id="confidence-meter"></span></div>
+        <div class="probability-grid">
+          <div><span>Spam score</span><strong id="spam-score">0%</strong></div>
+          <div><span>Not spam score</span><strong id="ham-score">0%</strong></div>
+        </div>
+        <p class="disclaimer">This is a machine-learning estimate, not a guarantee. Check suspicious links and sender details carefully.</p>
+      </section>
+    </section>
+
+    <section class="how-it-works">
+      <div class="mini-icon">01</div>
+      <div><h3>How it works</h3><p>The app converts text into TF-IDF features and uses a Naive Bayes classifier trained on labeled examples.</p></div>
+    </section>
+    <footer>MAILGUARD <span>•</span> EDUCATIONAL MACHINE LEARNING PROJECT</footer>
+  </main>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
